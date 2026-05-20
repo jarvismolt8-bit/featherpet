@@ -15,6 +15,14 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/pets', petsRouter);
 
+// multer file size error
+app.use((err, req, res, next) => {
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(400).json({ error: 'File too large' });
+  }
+  next(err);
+});
+
 app.listen(PORT, () => {
   console.log(`FeatherPet backend running on http://localhost:${PORT}`);
 });
