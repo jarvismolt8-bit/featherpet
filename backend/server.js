@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
+require('./db/database');
+
 const app = express();
 const PORT = 3001;
 
